@@ -1,12 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { createStore } from 'redux';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+function reducer(state, action){
+    if(action.type === 'changeState'){
+        return action.payload.newState;
+    }
+
+    return 'Initial State';
+}
+
+const store = createStore(reducer);
+console.log(store.getState());
+
+const action = {
+    type: 'changeState',
+    payload: {
+        newState: 'New State'
+    }
+};
+
+store.dispatch(action);
+console.log(store.getState());
+
+ReactDOM.render(
+    <di>
+        <h1>Learning React-Redux</h1>
+        <h3>Please check inspect element for checking the state</h3>
+    </di>,
+    document.getElementById('root'));
+
